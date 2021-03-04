@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+            "name": "Arcana"
+		}
+	],
+    "build_systems":
+    [
+        {
+            "name": "Launch Löve2D",
+            "shell_cmd": "love $project_path",
+            "file_regex": "^Error: (?:[^:]+: )?([^: ]+?):(\\d+):() ([^:]*)$",
+        },
+    ],
+}
