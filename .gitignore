@@ -41,3 +41,6 @@ luac.out
 
 # Sublime Text
 arcana.sublime-workspace
+
+# Ignore this
+assets-tmp

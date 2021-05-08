@@ -1,3 +1,7 @@
+# License
+
+Source code only!
+
 > This license DOES NOT apply to the graphics, sound, and music assets found
 > in the "assets" directory. Refer to the individual directories there for
 > applicable licenses.
