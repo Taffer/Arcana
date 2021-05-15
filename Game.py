@@ -50,9 +50,11 @@ class Game:
         self.create_window()
 
         screens = [
+            pygame.image.load('assets-src/taffer-1920x1080.png').convert(),
+            pygame.image.load('assets-src/pygame-1920x1080.png').convert(),
             pygame.image.load('assets-tmp/Antarctica without ice.jpg').convert(),
         ]
-        self.screen = SplashScreen(self.window, screens, 3, pytweening.easeInQuad)
+        self.screen = SplashScreen(self.window, screens, 1, pytweening.easeInQuad)
 
     def find_config_dir(self) -> str:
         ''' Based on the OS, find the configuration directory.
