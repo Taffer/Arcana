@@ -10,7 +10,9 @@ import pygame.freetype
 import pygame.gfxdraw
 import time
 
+from lib import pytweening
 from src.GameSettings import GameSettings
+from src.SplashScreen import SplashScreen
 from typing import Final
 
 
@@ -47,6 +49,11 @@ class Game:
         pygame.init()
         self.create_window()
 
+        screens = [
+            pygame.image.load('assets-tmp/Antarctica without ice.jpg').convert(),
+        ]
+        self.screen = SplashScreen(self.window, screens, 3, pytweening.easeInQuad)
+
     def find_config_dir(self) -> str:
         ''' Based on the OS, find the configuration directory.
         '''
@@ -59,11 +66,11 @@ class Game:
             raise RuntimeError(f'Unsupported system: {system}')
 
     def create_window(self):
-        self.window = pygame.display.set_mode((self.settings['WINDOW_WIDTH'], self.settings['WINDOW_HEIGHT']))
+        self.window = pygame.display.set_mode((self.settings.get('WINDOW_WIDTH'), self.settings.get('WINDOW_HEIGHT')))
         pygame.display.set_caption(Game.TITLE)
 
-        icon = pygame.image.load(self.rsrc['assets/icon.png']).convert_alpha()
-        pygame.display.set_icon(icon)
+        #icon = pygame.image.load(self.rsrc['assets/icon.png']).convert_alpha()
+        #pygame.display.set_icon(icon)
 
         ignore_events = [pygame.JOYAXISMOTION, pygame.JOYBALLMOTION, pygame.JOYHATMOTION, pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN,
                          pygame.VIDEORESIZE, pygame.VIDEOEXPOSE, pygame.AUDIODEVICEADDED, pygame.AUDIODEVICEREMOVED,
@@ -87,6 +94,9 @@ class Game:
 
             self.update(dt)
 
+            if self.screen.done:
+                playing = False
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     playing = False
@@ -108,10 +118,10 @@ class Game:
         pygame.quit()
 
     def update(self, dt: float) -> None:
-        pass
+        self.screen.update(dt)
 
     def draw(self) -> None:
-        pass
+        self.screen.draw()
 
     def keypressed(self, event: pygame.event.Event) -> None:
         pass
